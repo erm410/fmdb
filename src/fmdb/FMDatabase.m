@@ -176,6 +176,10 @@
     [self clearCachedStatements];
     [self closeOpenResultSets];
     
+    if (_inTransaction != NO) {
+        [self rollback];
+    }
+    
     if (!_db) {
         return YES;
     }
